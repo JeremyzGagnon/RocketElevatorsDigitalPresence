@@ -312,13 +312,13 @@
 				function main() {
 
 				// main function for Javascript
-					checkButton();
+					checkButtons();
 
 
 					
 				}
 				// check which button is selected
-				function checkButton() {
+				function checkButtons() {
 					
 					// Make a list of the first radio buttons	
 					let radioBtns = document.querySelectorAll("input[name='inlineRadioOptions']");
@@ -327,9 +327,21 @@
 					let findSelected = () => {
 						let selected = document.querySelector("input[name='inlineRadioOptions']:checked").value;
 						console.log("The selected radio button is: " + selected)
+						// let selected2 = document.querySelector("input[name='inlineRadioOptions2']:checked").value;
+						// console.log("The selected radio button is: " + selected2)
+
 						// calls the eventListener function to display the right fields
 						eventListeners(selected);
-						elevatorAmount(selected);
+
+						// if (selected2 == "Standard") {
+						// 	calculResidential();
+						// }
+						// else if (selected2 == "Premium") {
+						// 	return 0;
+						// }
+						// else if (selected2 == "Excellum") {
+						// 	return 0;
+						// }
 
 					}
 					// Everytime theres a change of button or one button is selected
@@ -373,70 +385,9 @@
 
 				}
 				
-
-				function elevatorAmount(selectedButton){
-					var numberOfApartements;
-					var numberOfFloors;
-					var numberOfOccupants;
-					var numberOfElevators;
-
-					// var numberOfApartements = document.getElementById("appartments").value;
-
-					if (selectedButton == "Residential") {
-						numberOfApartements = document.getElementById("appartments").value;
-						numberOfFloors = document.getElementById("floors").value;
-
-						// numberOfElevators = Math.ceil(numberOfApartements / numberOfFloors)
-
-
-
-					}
-
-					else if (selectedButton == "Commercial"){
-						numberOfFloors = document.getElementById("floors").value;
-						numberOfOccupants = document.getElementById("occupants").value;
-
-
-
-
-
-
-					}
-					else if (selectedButton == "Industrial"){
-						numberOfElevators = document.getElementById("elevator").value;
-
-						calculatePrice(numberOfElevators);
-
-
-					}
+				function calculResidential() {
+					console.log("enfin putain de merde	");
 				}
-
-				function calculatePrice(elevator_num) {
-
-					// Make a list of the first radio buttons	
-					let radioBtns = document.querySelectorAll("input[name='inlineRadioOptions2']");
-
-					// find the selected radio button
-					let findSelected = () => {
-						let selected = document.querySelector("input[name='inlineRadioOptions2']:checked").value;
-						console.log("The selected radio button is: " + selected);
-					}
-						radioBtns.forEach(radioBtn => {
-						radioBtn.addEventListener("change", findSelected);
-						
-					});
-
-
-
-				}
-
-
-
-
-
-
-
-
 
 			</script>
 
