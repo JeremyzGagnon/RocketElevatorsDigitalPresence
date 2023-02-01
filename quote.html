@@ -26,7 +26,7 @@
 		<link href="assets/css/layout.css" rel="stylesheet" type="text/css" />
 
 		<!-- PAGE LEVEL SCRIPTS -->
-		<link href="assets/css/header-1.css" rel="stylesheet" type="text/css" />
+		<link href="quote.css" rel="stylesheet" type="text/css" />
 		<link href="assets/css/color_scheme/yellow.css" rel="stylesheet" type="text/css" id="color_scheme" />
 	</head>
 
@@ -134,46 +134,85 @@
 			</div>
 
             <!-- CLIENT FORM -->
-			<!-- FIRST RADIO BUTTONS LINE -->
+			<!-- FIRST RADIO BUTTONS  -->
             <p></p>
+			<!-- Residential Button -->
             <div class="form-check form-check-inline"; style="margin-left: 100px; margin-top: 70px;" id="residential">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Residential">
                 <label class="form-check-label" for="inlineRadio1">Residential</label>
               </div>
+			  <!-- Commercial Button -->
               <div class="form-check form-check-inline"; id="commercial">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Commercial">
                 <label class="form-check-label" for="inlineRadio2">Commercial</label>
               </div>
+			  <!-- Industrial Button -->
               <div class="form-check form-check-inline"; id="industrial">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="Industrial" >
                 <label class="form-check-label" for="inlineRadio3">Industrial</label>
               </div>
             <p></p>
-			  <!-- FIRST  ENTRIES -->
-            <div class="mb-3"; style="margin-left: 100px;" id="entry_field_1">
-                <label for="formGroupExampleInput" class="form-label" id="entry_title_1">Example label</label>
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+
+			  <!-- Text Fields -->
+			  <!-- Fields for Residential -->
+			  <div id="radio_button_1" class="hidden">
+				<!-- # of appartments -->
+            <div class="mb-3 "; style="margin-left: 100px;" id="entry_field_1">
+                <label for="formGroupExampleInput" class="form-label" id="entry_title_1"> # of appartments</label>
+                <input type="number" class="form-control"  id="appartments" placeholder="">
               </div>
-              <div class="mb-3"; style="margin-left: 100px;" id="entry_field_2">
-                <label for="formGroupExampleInput2" class="form-label" id="entry_title_2">Another label</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="">
+			  <!-- # of floors -->
+              <div class="mb-3 " style="margin-left: 100px;" id="entry_field_2">
+                <label for="formGroupExampleInput2" class="form-label" id="entry_title_2"> # of floors</label>
+                <input type="number" class="form-control"  id="floors" placeholder="">
+              </div>
+
+			</div>
+
+			<div>
+
+				<!-- Fields for Commercial -->
+			<div id="radio_button_2"  class="hidden">
+				<!-- # of floors -->
+				<div class="mb-3 "; style="margin-left: 100px;" id="entry_field_3">
+					<label for="formGroupExampleInput" class="form-label" id="entry_title_1"># of floors</label>
+					<input type="number" class="form-control"  id="floors" placeholder="">
+				</div>
+				<!-- # of occupants per floors -->
+				<div class="mb-3 " style="margin-left: 100px;" id="entry_field_4">
+					<label for="formGroupExampleInput2" class="form-label" id="entry_title_2"> # of occupants per floors</label>
+					<input type="number" class="form-control"  id="occupants" placeholder="">
+				</div>
+				</div>
+			</div>
+
+			<!-- Field for Industrial -->
+			<!-- # of elevators -->
+			  <div class="hidden "; style="margin-left: 100px;" id="radio_button_3">
+                <label for="formGroupExampleInput" class="form-label" id="entry_title_1"> # of elevators</label>
+                <input type="number" class="form-control"  id="elevator" placeholder="">
               </div>
               <br>
-			  <!-- SECOND RADIO BUTTONS LINE -->
-              <div class="form-check form-check-inline"; style="margin-left: 100px;">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option1">
+
+			  <!-- Radio Button STANDARD PREMIUM EXCELLUM -->
+			  <!-- Standard -->
+              <div class="form-check form-check-inline "; style="margin-left: 100px;">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio4" value="Standard">
                 <label class="form-check-label" for="inlineRadio4">Standard</label>
               </div>
-              <div class="form-check form-check-inline"; style="margin-left: 100px;">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option2">
+			  <!-- Premium -->
+              <div class="form-check form-check-inline "; style="margin-left: 100px;">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio5" value="Premium">
                 <label class="form-check-label" for="inlineRadio5">Premium</label>
               </div>
-              <div class="form-check form-check-inline"; style="margin-left: 100px;">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio6" value="option3">
+			  <!-- Excellum -->
+              <div class="form-check form-check-inline "; style="margin-left: 100px;">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio6" value="Excellum">
                 <label class="form-check-label" for="inlineRadio6">Excellum</label>
               </div>
               <p></p>
-			  <!-- SECOND ENTRIES -->
+			  <!-- SECOND text fields -->
+
               <form class="row g-3">
 				
                 <div class="col-md-6"; style="margin-left: 100px;">
@@ -266,57 +305,130 @@
 
 			<!-- JAVASCRIPT -->
 			<script>
-				//DECLARING VARIABLES
-				// user input div
-				let label1 = document.getElementById("entry_field_1");
-				let label2 = document.getElementById("entry_field_2");
-				// upper text of input box
-				let title1 = document.getElementById("entry_title_1");
-				let title2 = document.getElementById("entry_title_2");
-				// buttons
-				let residential_button = document.getElementById('residential');
-				let commercial_button = document.getElementById('commercial');
-				let industrial_button = document.getElementById('industrial');
-				// user's inputs
-				let entry1 = document.getElementById('formGroupExampleInput').value;
-				let entry2 = document.getElementById('formGroupExampleInput2').value;
-
-				// Getting the value of the selected radio button
-				// selected_button = document.querySelector('input[name="inlineRadioOptions"]:checked').value;
-
-				// console.log(selected_button);
-
-				// HIDES THE ENTRY FILEDS BY DEFAULT
-				label1.style.display = 'none';
-				label2.style.display = "none";
-
-				// EVENT LISTENERS TO SHOW THE APPROPRIATE ENTRY FIELDS
-				residential_button.addEventListener('click', function()
-				{
-				label1.style.display = 'block';
-				label2.style.display = "block";
-				title1.textContent = '# of appartements'
-				title2.textContent = '# of floors'
-
-				})
-				commercial_button.addEventListener('click', function()
-				{
-				label1.style.display = 'block';
-				label2.style.display = "block";
-				title1.textContent = '# of floors'
-				title2.textContent = '# of occupants per floors'
+				// Calling main() function
+				main();
 
 
-				})
-				industrial_button.addEventListener('click', function()
-				{
-					label1.style.display = 'block';
-					label2.style.display = 'none';
-					title1.textContent = '# of elevators required'
+				function main() {
 
-				})
+				// main function for Javascript
+					checkButton();
+
+
+					
+				}
+				// check which button is selected
+				function checkButton() {
+					
+					// Make a list of the first radio buttons	
+					let radioBtns = document.querySelectorAll("input[name='inlineRadioOptions']");
+
+					// find the selected radio button
+					let findSelected = () => {
+						let selected = document.querySelector("input[name='inlineRadioOptions']:checked").value;
+						console.log("The selected radio button is: " + selected)
+						// calls the eventListener function to display the right fields
+						eventListeners(selected);
+						elevatorAmount(selected);
+
+					}
+					// Everytime theres a change of button or one button is selected
+					// it will trigger the findSelected function
+					radioBtns.forEach(radioBtn => {
+						radioBtn.addEventListener("change", findSelected);
+						
+					});
+
+					
+
+		}				
+
+				function eventListeners(selectedButton) {
+
+					if (selectedButton == "Residential") {
+						document.getElementById('radio_button_1').classList.remove('hidden');
+						document.getElementById('radio_button_2').classList.add('hidden');
+						document.getElementById('radio_button_3').classList.add('hidden');
+
+					}
+
+
+					else if (selectedButton == "Commercial"){
+						document.getElementById('radio_button_1').classList.add('hidden');
+						document.getElementById('radio_button_2').classList.remove('hidden');
+						document.getElementById('radio_button_3').classList.add('hidden');
+
+					}
+					else if (selectedButton == "Industrial"){
+						document.getElementById('radio_button_1').classList.add('hidden');
+						document.getElementById('radio_button_2').classList.add('hidden');
+						document.getElementById('radio_button_3').classList.remove('hidden');
+
+					}
+
+
+					
+
+
+
+				}
 				
-				
+
+				function elevatorAmount(selectedButton){
+					var numberOfApartements;
+					var numberOfFloors;
+					var numberOfOccupants;
+					var numberOfElevators;
+
+					// var numberOfApartements = document.getElementById("appartments").value;
+
+					if (selectedButton == "Residential") {
+						numberOfApartements = document.getElementById("appartments").value;
+						numberOfFloors = document.getElementById("floors").value;
+
+						// numberOfElevators = Math.ceil(numberOfApartements / numberOfFloors)
+
+
+
+					}
+
+					else if (selectedButton == "Commercial"){
+						numberOfFloors = document.getElementById("floors").value;
+						numberOfOccupants = document.getElementById("occupants").value;
+
+
+
+
+
+
+					}
+					else if (selectedButton == "Industrial"){
+						numberOfElevators = document.getElementById("elevator").value;
+
+						calculatePrice(numberOfElevators);
+
+
+					}
+				}
+
+				function calculatePrice(elevator_num) {
+
+					// Make a list of the first radio buttons	
+					let radioBtns = document.querySelectorAll("input[name='inlineRadioOptions2']");
+
+					// find the selected radio button
+					let findSelected = () => {
+						let selected = document.querySelector("input[name='inlineRadioOptions2']:checked").value;
+						console.log("The selected radio button is: " + selected);
+					}
+						radioBtns.forEach(radioBtn => {
+						radioBtn.addEventListener("change", findSelected);
+						
+					});
+
+
+
+				}
 
 
 
