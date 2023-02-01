@@ -176,7 +176,7 @@
 				<!-- # of floors -->
 				<div class="mb-3 "; style="margin-left: 100px;" id="entry_field_3">
 					<label for="formGroupExampleInput" class="form-label" id="entry_title_1"># of floors</label>
-					<input type="number" class="form-control"  id="floors" placeholder="">
+					<input type="number" class="form-control"  id="floors2" placeholder="">
 				</div>
 				<!-- # of occupants per floors -->
 				<div class="mb-3 " style="margin-left: 100px;" id="entry_field_4">
@@ -325,23 +325,36 @@
 
 					// find the selected radio button
 					let findSelected = () => {
-						let selected = document.querySelector("input[name='inlineRadioOptions']:checked").value;
-						console.log("The selected radio button is: " + selected)
-						// let selected2 = document.querySelector("input[name='inlineRadioOptions2']:checked").value;
-						// console.log("The selected radio button is: " + selected2)
+						var building = document.querySelector("input[name='inlineRadioOptions']:checked").value;
+						console.log("The selected radio button is: " + building)
 
 						// calls the eventListener function to display the right fields
-						eventListeners(selected);
+						eventListeners(building);
 
-						// if (selected2 == "Standard") {
-						// 	calculResidential();
-						// }
-						// else if (selected2 == "Premium") {
-						// 	return 0;
-						// }
-						// else if (selected2 == "Excellum") {
-						// 	return 0;
-						// }
+
+						if (building == "Residential") {
+							var numberOfElevators;
+							numberOfElevators = residentialElvator(building);
+							// console.log("My number of elevator is" + numberOfElevators);
+						}
+						else if (building == "Commercial") {
+							var numberOfElevators;
+							numberOfElevators = commercialElevator(building);
+							// console.log("My number of elevator is " + numberOfElevators);
+
+						}
+						else if (building == "Industrial") {
+							var numberOfElevators;
+							numberOfElevators = industrialElevator(building);
+							// console.log("My number of elevator is " + numberOfElevators);
+						}
+
+						
+
+
+						var mode = document.querySelector("input[name='inlineRadioOptions2']:checked").value;
+						console.log("The selected radio button is: " + mode)
+
 
 					}
 					// Everytime theres a change of button or one button is selected
@@ -385,11 +398,48 @@
 
 				}
 				
-				function calculResidential() {
-					console.log("enfin putain de merde	");
+				function residentialElvator(buildingType) {
+					var numberOfAppartments = parseInt(document.getElementById("appartments").value);
+					numberOfFloors = parseInt(document.getElementById("floors").value);
+					var numberOfElevators;
+
+					// Calculate the number of elevators
+					numberOfElevators = Math.ceil(numberOfAppartments / numberOfFloors);
+
+					if (numberOfFloors > 20) {
+						numberOfElevators *= (Math.floor(numberOfFloors / 20));
+
+					}
+
+					return numberOfElevators;
 				}
 
-			</script>
+				function commercialElevator(building) {
+					var numberOfFloors = parseInt(document.getElementById("floors2").value);
+					var numberOfOccupants = parseInt(document.getElementById('occupants').value);
+
+
+					var totalOccupants = numberOfFloors * numberOfOccupants;
+
+					var elevatorPerCylinder = Math.round(totalOccupants / 200);
+
+					var cylinderNumber = Math.ceil(numberOfFloors / 10);
+
+					var numberOfElevators = cylinderNumber * elevatorPerCylinder + cylinderNumber;
+
+					return numberOfElevators;
+
+					
+				}
+
+				function industrialElevator(building) {
+					var numberOfElevators = parseInt(document.getElementById("elevator").value);
+					return numberOfElevators;
+				}
+
+
+
+		</script>
 
 
 
