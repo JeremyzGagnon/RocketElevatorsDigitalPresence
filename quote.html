@@ -215,24 +215,24 @@
 
               <form class="row g-3">
 				
-                <div class="col-md-6"; style="margin-left: 100px;">
-                  <label for="inputEmail4" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="inputEmail4" disabled>
+                <div class="col-md-8"; style="margin-left: 100px;">
+                  <label for="inputEmail4" class="form-label">Amount of Elevators</label>
+                  <input type="text" class="form-control" id="display_elevators_amount"   readonly>
                 </div>
 
-                <div class="col-md-6"; style="margin-left: 100px;">
-                  <label for="inputPassword4" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="inputPassword4" disabled>
+                <div class="col-md-8"; style="margin-left: 100px;">
+                  <label for="inputPassword4" class="form-label">Price of Each Elevator</label>
+                  <input type="text" class="form-control" id="display_price_elevator" placeholder="" readonly>
                 </div>
 
-                <div class="col-12"; style="margin-left: 100px;">
-                  <label for="inputAddress" class="form-label">Address</label>
-                  <input type="text" class="form-control" id="inputAddress" placeholder="" disabled>
+                <div class="col-md-8"; style="margin-left: 100px;">
+                  <label for="inputAddress" class="form-label">Installatoin Fees</label>
+                  <input type="text" class="form-control" id="display_installation_fees" placeholder="" readonly>
                 </div>
 
-                <div class="col-12"; style="margin-left: 100px;">
-                  <label for="inputAddress2" class="form-label">Address 2</label>
-                  <input type="text" class="form-control" id="inputAddress2" placeholder="" disabled>
+                <div class="col-md-8"; style="margin-left: 100px;">
+                  <label for="inputAddress2" class="form-label">Total Cost</label>
+                  <input type="text" class="form-control" id="display_total_cost" placeholder="" readonly>
                 </div>
 
               </form>
@@ -309,19 +309,15 @@
 				main();
 
 
-				function main() {
-
-				// main function for Javascript
-					checkButtons();
-
-
-					
-				}
 				// check which button is selected
-				function checkButtons() {
+				function main() {
 					
+
+
 					// Make a list of the first radio buttons	
 					let radioBtns = document.querySelectorAll("input[name='inlineRadioOptions']");
+					let radioBtns2 = document.querySelectorAll("input[name='inlineRadioOptions2']");
+
 
 					// find the selected radio button
 					let findSelected = () => {
@@ -331,31 +327,27 @@
 						// calls the eventListener function to display the right fields
 						eventListeners(building);
 
-
-						if (building == "Residential") {
-							var numberOfElevators;
-							numberOfElevators = residentialElvator(building);
-							// console.log("My number of elevator is" + numberOfElevators);
-						}
-						else if (building == "Commercial") {
-							var numberOfElevators;
-							numberOfElevators = commercialElevator(building);
-							// console.log("My number of elevator is " + numberOfElevators);
-
-						}
-						else if (building == "Industrial") {
-							var numberOfElevators;
-							numberOfElevators = industrialElevator(building);
-							// console.log("My number of elevator is " + numberOfElevators);
-						}
-
-						
-
-
 						var mode = document.querySelector("input[name='inlineRadioOptions2']:checked").value;
 						console.log("The selected radio button is: " + mode)
 
 
+
+						if (building == "Residential" && (mode == 'Standard' || mode == 'Premium' || mode == 'Excellum')) {
+							var totalPrice;
+							totalPrice = residentialPrice(building, mode);
+							// console.log("My total price is " + totalPrice);
+						}
+						else if (building == "Commercial" && (mode == 'Standard' || mode == 'Premium' || mode == 'Excellum')) {
+							var totalPrice;
+							totalPrice = commercialPrice(building, mode);
+							// console.log("My number of elevator is " + totalPrice);
+
+						}
+						else if (building == "Industrial" && (mode == 'Standard' || mode == 'Premium' || mode == 'Excellum')) {
+							var totalPrice;
+							totalPrice = industrialPrice(building, mode);
+							// console.log("My number of elevator is " + totalPrice);
+						}
 					}
 					// Everytime theres a change of button or one button is selected
 					// it will trigger the findSelected function
@@ -363,6 +355,12 @@
 						radioBtn.addEventListener("change", findSelected);
 						
 					});
+
+					radioBtns2.forEach(radioBtn2 => {
+						radioBtn2.addEventListener("change", findSelected);
+						
+					});
+
 
 					
 
@@ -398,23 +396,52 @@
 
 				}
 				
-				function residentialElvator(buildingType) {
+				function residentialPrice(buildingType, quality) {
+
 					var numberOfAppartments = parseInt(document.getElementById("appartments").value);
-					numberOfFloors = parseInt(document.getElementById("floors").value);
-					var numberOfElevators;
+					var numberOfFloors = parseInt(document.getElementById("floors").value);
+					var appartementPerFloor = Math.ceil(numberOfAppartments / numberOfFloors); //average
+					// Le nombre d'ascenseurs depend du nombre d'apartements
+					var numberOfElevators = Math.ceil((appartementPerFloor) / 6);
 
 					// Calculate the number of elevators
-					numberOfElevators = Math.ceil(numberOfAppartments / numberOfFloors);
 
 					if (numberOfFloors > 20) {
+						// Le nombre de colonne est dependante des nombres d'etages
 						numberOfElevators *= (Math.floor(numberOfFloors / 20));
 
 					}
+					
+					// Calculate the total price
+					var totalPrice;
+					var fees;
+					var pricePerElevators;
 
-					return numberOfElevators;
+					if (quality == "Standard") {
+						pricePerElevators = 8000;
+						fees = numberOfElevators * pricePerElevators * 0.10
+						totalPrice = (numberOfElevators * pricePerElevators) + fees;
+					}
+					else if (quality == "Premium") {
+						pricePerElevators = 12000;
+						fees = numberOfElevators * pricePerElevators * 0.15
+						totalPrice = (numberOfElevators * 12000) + fees;
+					}
+					else if (quality == "Excellum") {
+						pricePerElevators = 15000;
+						fees = numberOfElevators * 15000 * 0.20;
+						totalPrice = (numberOfElevators * pricePerElevators) + fees;
+					}
+					
+					// Sends the data to be displayed
+					displays(numberOfElevators,pricePerElevators, fees, totalPrice);
+
+
+
+					
 				}
 
-				function commercialElevator(building) {
+				function commercialPrice(building, quality) {
 					var numberOfFloors = parseInt(document.getElementById("floors2").value);
 					var numberOfOccupants = parseInt(document.getElementById('occupants').value);
 
@@ -427,17 +454,89 @@
 
 					var numberOfElevators = cylinderNumber * elevatorPerCylinder + cylinderNumber;
 
-					return numberOfElevators;
+										// Calculate the total price
+										var totalPrice;
+					var fees;
+					var pricePerElevators;
+
+					if (quality == "Standard") {
+						pricePerElevators = 8000;
+						fees = numberOfElevators * pricePerElevators * 0.10
+						totalPrice = (numberOfElevators * pricePerElevators) + fees;
+					}
+					else if (quality == "Premium") {
+						pricePerElevators = 12000;
+						fees = numberOfElevators * pricePerElevators * 0.15
+						totalPrice = (numberOfElevators * 12000) + fees;
+					}
+					else if (quality == "Excellum") {
+						pricePerElevators = 15000;
+						fees = numberOfElevators * 15000 * 0.20;
+						totalPrice = (numberOfElevators * pricePerElevators) + fees;
+					}
+					
+					// Sends the data to be displayed
+					displays(numberOfElevators,pricePerElevators, fees, totalPrice);
+
+;
 
 					
 				}
 
-				function industrialElevator(building) {
+				function industrialPrice(building, quality) {
 					var numberOfElevators = parseInt(document.getElementById("elevator").value);
-					return numberOfElevators;
+										// Calculate the total price
+										var totalPrice;
+					var fees;
+					var pricePerElevators;
+
+					if (quality == "Standard") {
+						pricePerElevators = 8000;
+						fees = numberOfElevators * pricePerElevators * 0.10
+						totalPrice = (numberOfElevators * pricePerElevators) + fees;
+					}
+					else if (quality == "Premium") {
+						pricePerElevators = 12000;
+						fees = numberOfElevators * pricePerElevators * 0.15
+						totalPrice = (numberOfElevators * 12000) + fees;
+					}
+					else if (quality == "Excellum") {
+						pricePerElevators = 15000;
+						fees = numberOfElevators * 15000 * 0.20;
+						totalPrice = (numberOfElevators * pricePerElevators) + fees;
+					}
+					
+					// Sends the data to be displayed
+					displays(numberOfElevators,pricePerElevators, fees, totalPrice);
 				}
 
+				function displays(numberOfElevators, priceElevator, fees, total, building) {
 
+					// Create our number formatter.
+					const formatter = new Intl.NumberFormat('en-US', {
+					style: 'currency',
+					currency: 'CAD',
+
+					// These options are needed to round to whole numbers if that's what you want.
+					//minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+					//maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+					});
+
+
+					
+					document.getElementById("display_elevators_amount").placeholder = numberOfElevators;
+					document.getElementById("display_price_elevator").placeholder = formatter.format(priceElevator);
+					document.getElementById("display_installation_fees").placeholder = formatter.format(fees);
+					document.getElementById("display_total_cost").placeholder = formatter.format(total);
+
+
+					
+
+
+					
+
+
+				}
 
 		</script>
 
