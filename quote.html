@@ -192,9 +192,12 @@
                 <label for="formGroupExampleInput" class="form-label" id="entry_title_1"> # of elevators</label>
                 <input type="number" class="form-control"  id="elevator" placeholder="">
               </div>
+
               <br>
 
 			  <!-- Radio Button STANDARD PREMIUM EXCELLUM -->
+
+			  
 			  <!-- Standard -->
               <div class="form-check form-check-inline "; style="margin-left: 100px;">
                 <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio4" value="Standard" >
@@ -210,7 +213,13 @@
                 <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio6" value="Excellum">
                 <label class="form-check-label" for="inlineRadio6">Excellum</label>
               </div>
+
+
               <p></p>
+			  <button type="button" class="btn btn-primary" style="margin-top: 10px; margin-left: 100px; margin-bottom: 20px;" id="submit">Submit</button>
+
+
+
 			  <!-- SECOND text fields -->
 
               <form class="row g-3">
@@ -236,6 +245,8 @@
                 </div>
 
               </form>
+
+			  
 
             <!-- /CLIENT FORM -->
 
@@ -309,21 +320,33 @@
 				main();
 				// check which button is selected
 				function main() {
+
 					
 					// Make a list of the first radio buttons	
 					let radioBtns = document.querySelectorAll("input[name='inlineRadioOptions']");
 					let radioBtns2 = document.querySelectorAll("input[name='inlineRadioOptions2']");
 
+
+
+
 					// finds the selected radio button
 					let findSelected = () => {
 						var building = document.querySelector("input[name='inlineRadioOptions']:checked").value;
 						console.log("The selected radio button is: " + building)
+						
+
 
 						// calls the eventListener function to display the right fields
 						eventListeners(building, mode);
 
+
 						var mode = document.querySelector("input[name='inlineRadioOptions2']:checked").value;
 						console.log("The selected radio button is: " + mode)
+
+
+
+						
+
 
 						if (building == "Residential" && (mode == 'Standard' || mode == 'Premium' || mode == 'Excellum')) {
 							var totalPrice;
@@ -350,6 +373,8 @@
 						radioBtn2.addEventListener("change", findSelected);
 						
 					});
+
+
 		}				
 
 				function eventListeners(selectedButton, mode) {
@@ -377,10 +402,16 @@
 				
 				function residentialPrice(buildingType, quality) {
 					// User Inputs
-					var numberOfAppartments = parseInt(document.getElementById("appartments").value);
-					var numberOfFloors = parseInt(document.getElementById("floors").value);
 
-					var appartementPerFloor = Math.ceil(numberOfAppartments / numberOfFloors); //average
+					const submit_btn = document.getElementById('submit');
+
+					submit_btn.addEventListener('click', function() {
+						console.log("button is clicked");
+						var numberOfAppartments = parseInt(document.getElementById("appartments").value);
+						var numberOfFloors = parseInt(document.getElementById("floors").value);
+
+						
+						var appartementPerFloor = Math.ceil(numberOfAppartments / numberOfFloors); //average
 					// Le nombre d'ascenseurs depend du nombre d'apartements
 					var numberOfElevators = Math.ceil((appartementPerFloor) / 6);
 
@@ -416,6 +447,10 @@
 					// Sends the data to be displayed
 					displays(numberOfElevators,pricePerElevators, fees, totalPrice, buildingType);
 
+					});
+
+
+
 
 
 					
@@ -423,7 +458,11 @@
 
 				function commercialPrice(building, quality) {
 					// User Input
-					var numberOfFloors = parseInt(document.getElementById("floors2").value);
+
+					const submit_btn = document.getElementById('submit');
+
+					submit_btn.addEventListener('click' ,function () {
+						var numberOfFloors = parseInt(document.getElementById("floors2").value);
 					var numberOfOccupants = parseInt(document.getElementById('occupants').value);
 
 
@@ -459,12 +498,15 @@
 					// Sends the data to be displayed
 					displays(numberOfElevators,pricePerElevators, fees, totalPrice, building);
 
-;
 
-					
-				}
+					});
+					}
 
 				function industrialPrice(building, quality) {
+
+					const submit_btn = document.getElementById('submit');
+					submit_btn.addEventListener('click', function () {
+
 					// User Input
 					var numberOfElevators = parseInt(document.getElementById("elevator").value);
 					// Calculate the total price
@@ -490,6 +532,9 @@
 					
 					// Sends the data to be displayed
 					displays(numberOfElevators,pricePerElevators, fees, totalPrice, building);
+
+
+					});
 				}
 
 				function displays(numberOfElevators, priceElevator, fees, total, building) {
@@ -507,16 +552,18 @@
 					// Removes the Not a number problem
 
 					if ((document.getElementById("appartments").value == '' || document.getElementById("floors").value == '') && building=="Residential"){
-							console.log("THIS IS NULL")
+							// window.alert("Please don't leave blank entry")
 							blankPlaceholder();
 						}
 
 					else if ((document.getElementById("floors2").value == '' || document.getElementById("occupants").value == '') && building=='Commercial') {
-							console.log("THIS IS NULL")
+							// window.alert("Please don't leave blank entry")
 							blankPlaceholder();
 						}
 
 					else if (document.getElementById("elevator").value == '' && building =='Industrial') {
+							// window.alert("Please don't leave blank entry")
+
 							blankPlaceholder();
 						}
 
