@@ -134,21 +134,22 @@
 			</div>
 
             <!-- CLIENT FORM -->
+			<form>
 			<!-- FIRST RADIO BUTTONS  -->
             <p></p>
 			<!-- Residential Button -->
             <div class="form-check form-check-inline"; style="margin-left: 100px; margin-top: 70px;" id="residential">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Residential">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Residential" required>
                 <label class="form-check-label" for="inlineRadio1">Residential</label>
               </div>
 			  <!-- Commercial Button -->
               <div class="form-check form-check-inline"; id="commercial">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Commercial">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Commercial" required>
                 <label class="form-check-label" for="inlineRadio2">Commercial</label>
               </div>
 			  <!-- Industrial Button -->
               <div class="form-check form-check-inline"; id="industrial">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="Industrial" >
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="Industrial" required>
                 <label class="form-check-label" for="inlineRadio3">Industrial</label>
               </div>
             <p></p>
@@ -159,12 +160,12 @@
 				<!-- # of appartments -->
             <div class="col-md-8 "; style="margin-left: 85px;" id="entry_field_1">
                 <label for="formGroupExampleInput" class="form-label" id="entry_title_1"> # of appartments</label>
-                <input type="number" class="form-control"  id="appartments" placeholder="">
+                <input type="number" class="form-control"  id="appartments" placeholder="" required>
               </div>
 			  <!-- # of floors -->
               <div class="col-md-8 "; style="margin-left: 85px;" id="entry_field_2">
                 <label for="formGroupExampleInput2" class="form-label" id="entry_title_2"> # of floors</label>
-                <input type="number" class="form-control"  id="floors" placeholder="">
+                <input type="number" class="form-control"  id="floors" placeholder="" required>
               </div>
 
 			</div>
@@ -176,12 +177,12 @@
 				<!-- # of floors -->
 				<div class="col-md-8 "; style="margin-left: 85px;" id="entry_field_3">
 					<label for="formGroupExampleInput" class="form-label" id="entry_title_1"># of floors</label>
-					<input type="number" class="form-control"  id="floors2" placeholder="">
+					<input type="number" class="form-control"  id="floors2" placeholder="" required>
 				</div>
 				<!-- # of occupants per floors -->
 				<div class="col-md-8 "; style="margin-left: 85px;" id="entry_field_4">
 					<label for="formGroupExampleInput2" class="form-label" id="entry_title_2"> # of occupants per floors</label>
-					<input type="number" class="form-control"  id="occupants" placeholder="">
+					<input type="number" class="form-control"  id="occupants" placeholder="" required>
 				</div>
 				</div>
 			</div>
@@ -190,7 +191,7 @@
 			<!-- # of elevators -->
 			  <div class="col-md-8 hidden "; style="margin-left: 85px;" id="radio_button_3">
                 <label for="formGroupExampleInput" class="form-label" id="entry_title_1"> # of elevators</label>
-                <input type="number" class="form-control"  id="elevator" placeholder="">
+                <input type="number" class="form-control"  id="elevator" placeholder="" required>
               </div>
 
               <br>
@@ -200,23 +201,23 @@
 			  
 			  <!-- Standard -->
               <div class="form-check form-check-inline "; style="margin-left: 100px;">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio4" value="Standard" >
+                <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio4" value="Standard" required>
                 <label class="form-check-label" for="inlineRadio4">Standard</label>
               </div>
 			  <!-- Premium -->
               <div class="form-check form-check-inline "; style="margin-left: 100px;">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio5" value="Premium">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio5" value="Premium" required>
                 <label class="form-check-label" for="inlineRadio5">Premium</label>
               </div>
 			  <!-- Excellum -->
               <div class="form-check form-check-inline "; style="margin-left: 100px;">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio6" value="Excellum">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio6" value="Excellum" required>
                 <label class="form-check-label" for="inlineRadio6">Excellum</label>
               </div>
 
 
               <p></p>
-			  <button type="button" class="btn btn-primary" style="margin-top: 10px; margin-left: 100px; margin-bottom: 20px;" id="submit">Submit</button>
+			  <button type="submit" class="btn btn-primary" style="margin-top: 10px; margin-left: 100px; margin-bottom: 20px;" id="submit">Submit</button>
 
 
 
@@ -249,6 +250,7 @@
 			  
 
             <!-- /CLIENT FORM -->
+			</form>
 
 			<img id="form-logo" src="/assets/images/rocketElevators/icon.png" style=>
 
@@ -319,275 +321,7 @@
 		</div>
 
 			<!-- JAVASCRIPT -->
-			<script>
-				// Calling main() function
-				main();
-				// check which button is selected
-				function main() {
-
-					
-					// Make a list of the first radio buttons	
-					let radioBtns = document.querySelectorAll("input[name='inlineRadioOptions']");
-					let radioBtns2 = document.querySelectorAll("input[name='inlineRadioOptions2']");
-
-
-
-
-					// finds the selected radio button
-					let findSelected = () => {
-						var building = document.querySelector("input[name='inlineRadioOptions']:checked").value;
-						console.log("The selected radio button is: " + building)
-						
-
-
-						// calls the eventListener function to display the right fields
-						eventListeners(building, mode);
-
-
-						var mode = document.querySelector("input[name='inlineRadioOptions2']:checked").value;
-						console.log("The selected radio button is: " + mode)
-
-
-
-						
-
-
-						if (building == "Residential" && (mode == 'Standard' || mode == 'Premium' || mode == 'Excellum')) {
-							var totalPrice;
-							residentialPrice(building, mode);
-						}
-						else if (building == "Commercial" && (mode == 'Standard' || mode == 'Premium' || mode == 'Excellum')) {
-							var totalPrice;
-							commercialPrice(building, mode);
-
-						}
-						else if (building == "Industrial" && (mode == 'Standard' || mode == 'Premium' || mode == 'Excellum')) {
-							var totalPrice;
-							industrialPrice(building, mode);
-						}
-					}
-					// Everytime theres a change of button or one button is selected
-					// it will trigger the findSelected function
-					radioBtns.forEach(radioBtn => {
-						radioBtn.addEventListener("change", findSelected);
-						
-					});
-
-					radioBtns2.forEach(radioBtn2 => {
-						radioBtn2.addEventListener("change", findSelected);
-						
-					});
-
-
-		}				
-
-				function eventListeners(selectedButton, mode) {
-
-					if (selectedButton == "Residential") {
-						document.getElementById('radio_button_1').classList.remove('hidden');
-						document.getElementById('radio_button_2').classList.add('hidden');
-						document.getElementById('radio_button_3').classList.add('hidden');
-					}
-
-
-					else if (selectedButton == "Commercial"){
-						document.getElementById('radio_button_1').classList.add('hidden');
-						document.getElementById('radio_button_2').classList.remove('hidden');
-						document.getElementById('radio_button_3').classList.add('hidden');
-
-					}
-					else if (selectedButton == "Industrial"){
-						document.getElementById('radio_button_1').classList.add('hidden');
-						document.getElementById('radio_button_2').classList.add('hidden');
-						document.getElementById('radio_button_3').classList.remove('hidden');
-
-					}
-				}
-				
-				function residentialPrice(buildingType, quality) {
-					// User Inputs
-
-					const submit_btn = document.getElementById('submit');
-
-					submit_btn.addEventListener('click', function() {
-						console.log("button is clicked");
-						var numberOfAppartments = parseInt(document.getElementById("appartments").value);
-						var numberOfFloors = parseInt(document.getElementById("floors").value);
-
-						
-						var appartementPerFloor = Math.ceil(numberOfAppartments / numberOfFloors); //average
-					// Le nombre d'ascenseurs depend du nombre d'apartements
-					var numberOfElevators = Math.ceil((appartementPerFloor) / 6);
-
-					// Calculate the number of elevators
-
-					if (numberOfFloors > 20) {
-						// Le nombre de colonne est dependante des nombres d'etages
-						numberOfElevators *= (Math.floor(numberOfFloors / 20));
-
-					}
-					
-					// Calculate the total price
-					var totalPrice;
-					var fees;
-					var pricePerElevators;
-
-					if (quality == "Standard") {
-						pricePerElevators = 8000;
-						fees = numberOfElevators * pricePerElevators * 0.10
-						totalPrice = (numberOfElevators * pricePerElevators) + fees;
-					}
-					else if (quality == "Premium") {
-						pricePerElevators = 12000;
-						fees = numberOfElevators * pricePerElevators * 0.15
-						totalPrice = (numberOfElevators * 12000) + fees;
-					}
-					else if (quality == "Excellum") {
-						pricePerElevators = 15000;
-						fees = numberOfElevators * 15000 * 0.20;
-						totalPrice = (numberOfElevators * pricePerElevators) + fees;
-					}
-					
-					// Sends the data to be displayed
-					displays(numberOfElevators,pricePerElevators, fees, totalPrice, buildingType);
-
-					});
-
-
-
-
-
-					
-				}
-
-				function commercialPrice(building, quality) {
-					// User Input
-
-					const submit_btn = document.getElementById('submit');
-
-					submit_btn.addEventListener('click' ,function () {
-						var numberOfFloors = parseInt(document.getElementById("floors2").value);
-					var numberOfOccupants = parseInt(document.getElementById('occupants').value);
-
-
-					var totalOccupants = numberOfFloors * numberOfOccupants;
-
-					var elevatorPerCylinder = Math.round(totalOccupants / 200);
-
-					var cylinderNumber = Math.ceil(numberOfFloors / 10);
-
-					var numberOfElevators = cylinderNumber * elevatorPerCylinder + cylinderNumber;
-
-										// Calculate the total price
-					var totalPrice;
-					var fees;
-					var pricePerElevators;
-
-					if (quality == "Standard") {
-						pricePerElevators = 8000;
-						fees = numberOfElevators * pricePerElevators * 0.10
-						totalPrice = (numberOfElevators * pricePerElevators) + fees;
-					}
-					else if (quality == "Premium") {
-						pricePerElevators = 12000;
-						fees = numberOfElevators * pricePerElevators * 0.15
-						totalPrice = (numberOfElevators * 12000) + fees;
-					}
-					else if (quality == "Excellum") {
-						pricePerElevators = 15000;
-						fees = numberOfElevators * 15000 * 0.20;
-						totalPrice = (numberOfElevators * pricePerElevators) + fees;
-					}
-					
-					// Sends the data to be displayed
-					displays(numberOfElevators,pricePerElevators, fees, totalPrice, building);
-
-
-					});
-					}
-
-				function industrialPrice(building, quality) {
-
-					const submit_btn = document.getElementById('submit');
-					submit_btn.addEventListener('click', function () {
-
-					// User Input
-					var numberOfElevators = parseInt(document.getElementById("elevator").value);
-					// Calculate the total price
-					var totalPrice;
-					var fees;
-					var pricePerElevators;
-
-					if (quality == "Standard") {
-						pricePerElevators = 8000;
-						fees = numberOfElevators * pricePerElevators * 0.10
-						totalPrice = (numberOfElevators * pricePerElevators) + fees;
-					}
-					else if (quality == "Premium") {
-						pricePerElevators = 12000;
-						fees = numberOfElevators * pricePerElevators * 0.15
-						totalPrice = (numberOfElevators * 12000) + fees;
-					}
-					else if (quality == "Excellum") {
-						pricePerElevators = 15000;
-						fees = numberOfElevators * 15000 * 0.20;
-						totalPrice = (numberOfElevators * pricePerElevators) + fees;
-					}
-					
-					// Sends the data to be displayed
-					displays(numberOfElevators,pricePerElevators, fees, totalPrice, building);
-
-
-					});
-				}
-
-				function displays(numberOfElevators, priceElevator, fees, total, building) {
-
-					// Create our number formatter.
-					const formatter = new Intl.NumberFormat('en-US', {
-					style: 'currency',
-					currency: 'CAD',
-
-					// These options are needed to round to whole numbers if that's what you want.
-					//minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
-					//maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
-					});
-					
-					// Removes the Not a number problem
-
-					if ((document.getElementById("appartments").value == '' || document.getElementById("floors").value == '') && building=="Residential"){
-							// window.alert("Please don't leave blank entry")
-							blankPlaceholder();
-						}
-
-					else if ((document.getElementById("floors2").value == '' || document.getElementById("occupants").value == '') && building=='Commercial') {
-							// window.alert("Please don't leave blank entry")
-							blankPlaceholder();
-						}
-
-					else if (document.getElementById("elevator").value == '' && building =='Industrial') {
-							// window.alert("Please don't leave blank entry")
-
-							blankPlaceholder();
-						}
-
-					else {
-						document.getElementById("display_elevators_amount").placeholder = numberOfElevators;
-						document.getElementById("display_price_elevator").placeholder = formatter.format(priceElevator);
-						document.getElementById("display_installation_fees").placeholder = formatter.format(fees);
-						document.getElementById("display_total_cost").placeholder = formatter.format(total);
-
-					};
-				}
-
-				function blankPlaceholder(){
-					document.getElementById("display_elevators_amount").placeholder = '';
-					document.getElementById("display_price_elevator").placeholder = '';
-					document.getElementById("display_installation_fees").placeholder = '';
-					document.getElementById("display_total_cost").placeholder = '';
-
-				}
-		</script>
+			<script src="/quote.js"></script>
 
 
 

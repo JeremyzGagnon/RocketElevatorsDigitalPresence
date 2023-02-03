@@ -1,8 +1,10 @@
+/* hides the entry field if no radio button is selected */
 .hidden{
     display: none;
     
 }
 
+/* Logo at the end of the form */
 #form-logo{
     display: block;
     margin-left: auto;
