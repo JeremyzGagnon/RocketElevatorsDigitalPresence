@@ -7,6 +7,8 @@ function main() {
     let radioBtns = document.querySelectorAll("input[name='inlineRadioOptions']");
         // Make a list of the quality radio buttons	
     let radioBtns2 = document.querySelectorAll("input[name='inlineRadioOptions2']");
+        // Make a list of the currency radio buttons	
+    let radioBtns3 = document.querySelectorAll("input[name='inlineRadioOptions3']");
 
     // finds the selected radio button
     let findSelected = () => {
@@ -20,19 +22,23 @@ function main() {
 
         var mode = document.querySelector("input[name='inlineRadioOptions2']:checked").value;
         console.log("The selected radio button is: " + mode)
+
+        var currency = document.querySelector("input[name='inlineRadioOptions3']:checked").value;
+        console.log("The selected radio button is: " + currency)
+
         // Goes to the appropriate function depending of the building type and quality
         if (building == "Residential" && (mode == 'Standard' || mode == 'Premium' || mode == 'Excellum')) {
             var totalPrice;
-            residentialPrice(building, mode);
+            residentialPrice(building, mode, currency);
         }
         else if (building == "Commercial" && (mode == 'Standard' || mode == 'Premium' || mode == 'Excellum')) {
             var totalPrice;
-            commercialPrice(building, mode);
+            commercialPrice(building, mode, currency);
 
         }
         else if (building == "Industrial" && (mode == 'Standard' || mode == 'Premium' || mode == 'Excellum')) {
             var totalPrice;
-            industrialPrice(building, mode);
+            industrialPrice(building, mode, currency);
         }
     }
     // Everytime theres a change of button or one button is selected
@@ -47,10 +53,16 @@ function main() {
         
     });
 
+    radioBtns3.forEach(radioBtn3 => {
+        radioBtn3.addEventListener("change", findSelected);
+        
+    });
+
+
 
 }				
 
-function eventListeners(selectedButton, mode) {
+function eventListeners(selectedButton) {
     // Display the correct input field associate with the building type
     if (selectedButton == "Residential") {
         document.getElementById('radio_button_1').classList.remove('hidden');
@@ -165,7 +177,7 @@ function commercialPrice(building, quality) {
         // Sends the data to be displayed
         displays(numberOfElevators,pricePerElevators, fees, totalPrice, building);
     });
-    }
+}
 
 function industrialPrice(building, quality) {
     // This is a function to calculate the total cost of a Industrial Building
@@ -207,18 +219,37 @@ function industrialPrice(building, quality) {
 }
 
 function displays(numberOfElevators, priceElevator, fees, total, building) {
+    // This function displays the output to the user with the appropriate conversion
 
-    // Number formatter to display user's currency US or CAD.
-    const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'CAD',
+    // Checks which conversion to apply
+    var usDollar = document.getElementById("inlineRadio7").checked;
+    var canadianDollar = document.getElementById("inlineRadio8").checked;
+    let formatter;
 
-    // These options are needed to round to whole numbers if that's what you want.
-    //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
-    //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
-    });
+    // $.getJSON
+    if (usDollar == true){
+         formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            
+                // These options are needed to round to whole numbers if that's what you want.
+                //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+                //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+                }); 
+                // Conversion price has February 3 2023 1:16pm
+                priceElevator *= 0.75;
+                fees *= 0.75;
+                total *= 0.75;
+    }
+    else {
+         formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'CAD',
     
-    // Removes the Not a number problem
+        });
+    }
+
+    // Removes the Not a number problem and display result
 
     if ((document.getElementById("appartments").value == '' || document.getElementById("floors").value == '') && building=="Residential"){
             // window.alert("Please don't leave blank entry")
