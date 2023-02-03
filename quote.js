@@ -15,8 +15,6 @@ function main() {
         var building = document.querySelector("input[name='inlineRadioOptions']:checked").value;
         console.log("The selected radio button is: " + building)
         
-
-
         // calls the eventListener function to display the right fields
         eventListeners(building, mode);
 
@@ -57,8 +55,6 @@ function main() {
         radioBtn3.addEventListener("change", findSelected);
         
     });
-
-
 
 }				
 
@@ -104,7 +100,7 @@ function residentialPrice(buildingType, quality) {
 
         if (numberOfFloors > 20) {
             // Number of cylinders depends on the number of floors f(x)
-            numberOfElevators *= (Math.floor(numberOfFloors / 20));
+            numberOfElevators *= (Math.ceil(numberOfFloors / 20));
 
         }
         
@@ -132,12 +128,6 @@ function residentialPrice(buildingType, quality) {
         displays(numberOfElevators,pricePerElevators, fees, totalPrice, buildingType);
 
     });
-
-
-
-
-
-    
 }
 
 function commercialPrice(building, quality) {
@@ -148,12 +138,16 @@ function commercialPrice(building, quality) {
     // When the user click the button do this
     submit_btn.addEventListener('click' ,function () {
         // Variables declarations
+        // User Inputs
         var numberOfFloors = parseInt(document.getElementById("floors2").value);
         var numberOfOccupants = parseInt(document.getElementById('occupants').value);
+
         var totalOccupants = numberOfFloors * numberOfOccupants;
-        var elevatorPerCylinder = Math.round(totalOccupants / 200);
+        var elevatorPerCylinder = Math.ceil(totalOccupants / 200);
         var cylinderNumber = Math.ceil(numberOfFloors / 10);
         var numberOfElevators = cylinderNumber * elevatorPerCylinder + cylinderNumber;
+
+
                             // Calculate the total price
         var totalPrice;
         var fees;
@@ -252,18 +246,14 @@ function displays(numberOfElevators, priceElevator, fees, total, building) {
     // Removes the Not a number problem and display result
 
     if ((document.getElementById("appartments").value == '' || document.getElementById("floors").value == '') && building=="Residential"){
-            // window.alert("Please don't leave blank entry")
             blankPlaceholder();
         }
 
     else if ((document.getElementById("floors2").value == '' || document.getElementById("occupants").value == '') && building=='Commercial') {
-            // window.alert("Please don't leave blank entry")
             blankPlaceholder();
         }
 
     else if (document.getElementById("elevator").value == '' && building =='Industrial') {
-            // window.alert("Please don't leave blank entry")
-
             blankPlaceholder();
         }
 
